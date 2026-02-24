@@ -2,14 +2,41 @@
 // 2-4
 // Unit 2 Checkpoint 2
 
+int randallX = 150;
+int randallY = 195;
+int randallAngle;
+
+int vx = 3;
+int vy = 3;
 
 void setup() {
-  size(800, 800);
+  size(800, 800, P2D);
 }
 // end setup
 
 void draw() {
-  Randall();
+  background(#00488E);
+  Randall(randallX, randallY, randallAngle);
+  
+  randallX += vx;
+  randallY += vy;
+  randallAngle ++;
+  
+  if (randallX >= 672) {
+    vx = -3;
+  }
+  
+  if (randallX <= 150) {
+   vx = 3; 
+  }
+  
+  if (randallY >= 678) {
+    vy = -3; 
+   }
+   
+  if (randallY <= 150) {
+   vy = 3;
+  }
   
 }
 // end draw
@@ -37,10 +64,11 @@ void frond(int x, int y) {
   ellipse(x, y, 20, 100);
 }
 
-void Randall() {
+void Randall(int x, int y, float angle) {
 
   pushMatrix();
-  translate(400, 400);
+  translate(x, y);
+  rotate(radians(angle));
 
   //face
   fill(#BFAADE);
