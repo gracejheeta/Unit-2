@@ -5,6 +5,7 @@
 int randallX = 150;
 int randallY = 195;
 int randallAngle;
+int randallScale = 1;
 
 int vx = 3;
 int vy = 3;
@@ -16,41 +17,54 @@ void setup() {
 
 void draw() {
   background(#00488E);
-  Randall(randallX, randallY, randallAngle);
-  
+  Randall(randallX, randallY, randallAngle, randallScale);
+
   randallX += vx;
   randallY += vy;
   randallAngle ++;
-  
-  if (randallX >= 672) {
-    vx = -3;
+
+
+  if (randallX >= 660 || randallX <= 150) {
+    randallScale = 0;
+
+    if (randallX <= 150) {
+      vx = 3;
+    }
+    if (randallX >= 660) {
+      vx = -3;
+    }
   }
-  
-  if (randallX <= 150) {
-   vx = 3; 
+
+  if (randallX <= 600 && vx < 0) {
+    randallScale = 1;
   }
-  
-  if (randallY >= 678) {
-    vy = -3; 
-   }
-   
+
+  if (randallX >= 210 && vx > 0) {
+    randallScale = 1; 
+  }
+
+
+
+  if (randallY >= 665) {
+    vy = -3;
+  }
+
   if (randallY <= 150) {
-   vy = 3;
+    vy = 3;
   }
-  
 }
 // end draw
 
 void eye(int x, int y) {
- strokeWeight(5);
- fill(#BFAADE);
- ellipse(x, y, 70, 70);
- fill(255);
- ellipse(x, y, 70, 40);
- fill(#4C671D);
- ellipse(x, y, 40, 40);
- fill(0);
- ellipse(x, y, 20, 20);
+  strokeWeight(5);
+  fill(#BFAADE);
+  ellipse(x, y, 70, 70);
+  fill(255);
+  ellipse(x, y, 70, 40);
+  fill(#4C671D);
+  ellipse(x, y, 40, 40);
+  fill(0);
+  ellipse(x, y, 20, 20);
 }
 
 void teeth(int x, int y) {
@@ -64,18 +78,19 @@ void frond(int x, int y) {
   ellipse(x, y, 20, 100);
 }
 
-void Randall(int x, int y, float angle) {
+void Randall(int x, int y, int angle, int scale) {
 
   pushMatrix();
   translate(x, y);
   rotate(radians(angle));
+  scale(scale);
 
   //face
   fill(#BFAADE);
   strokeWeight(5);
   stroke(#2A0C55);
   ellipse(0, 0, 300, 250);
-  
+
   //mouth
   fill(0);
   ellipse(0, 10, 270, 200);
@@ -99,12 +114,12 @@ void Randall(int x, int y, float angle) {
   //eyes
   eye(-60, -20);
   eye(60, -20);
-  
+
   //fronds
   frond(-10, -100);
   frond(20, -120);
   frond(50, -140);
-  
+
   popMatrix();
 }
 
