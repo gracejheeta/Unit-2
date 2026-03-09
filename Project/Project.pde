@@ -4,7 +4,7 @@
 
 int rotateEarth;
 float scaleEarth = 1;
-float vEarth = -0.02;
+float vEarth = -0.03;
 
 
 int asteroidX = 475;
@@ -36,8 +36,8 @@ void draw() {
   // asteroid
   asteroid(asteroidX, asteroidY);
 
-  asteroidX --;
-  asteroidY ++;
+  asteroidX -= 2;
+  asteroidY += 2;
 
   if (asteroidX <= 250) {
     scaleEarth = scaleEarth + vEarth;
