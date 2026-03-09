@@ -4,7 +4,7 @@
 
 int rotateEarth;
 float scaleEarth = 1;
-float vEarth = -0.05;
+float vEarth = -0.02;
 
 
 int asteroidX = 475;
@@ -41,16 +41,13 @@ void draw() {
 
   if (asteroidX <= 250) {
     scaleEarth = scaleEarth + vEarth;
-
   }
   
   if (scaleEarth <= 0) {
       vEarth = 0;
-      explosionX ++;
-      explosionY ++;
+      explosionX +=2;
+      explosionY +=2;
    }
-
-
   
 }
 
@@ -99,9 +96,6 @@ void asteroid(int x, int y) {
 }
 
 void explosion(int w, int h) {
-
-
   fill(#CE4E13);
   ellipse(150, 300, w, h);
-
 }
